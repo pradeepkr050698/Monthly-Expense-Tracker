@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Monthly Expense Tracker</h1>
+
+        <!-- Month Selection -->
+        <label for="month-selector">Select Month:</label>
+        <select id="month-selector" onchange="displayDates()">
+            <option value="0">January</option>
+            <option value="1">February</option>
+            <option value="2">March</option>
+            <option value="3">April</option>
+            <option value="4">May</option>
+            <option value="5">June</option>
+            <option value="6">July</option>
+            <option value="7">August</option>
+            <option value="8">September</option>
+            <option value="9">October</option>
+            <option value="10">November</option>
+            <option value="11">December</option>
+        </select>
+
+        <!-- Monthly Expenses Section -->
+        <div class="monthly-expenses">
+            <label for="monthly-expenses">Monthly Expenses:</label>
+            <input type="number" id="monthly-expenses" value="0" oninput="updateRemainingBalance()">
+        </div>
+
+        <!-- Emergency Funds Section -->
+        <div class="emergency-funds">
+            <label for="emergency-funds">Emergency Funds:</label>
+            <input type="number" id="emergency-funds" value="0">
+        </div>
+
+        <!-- Savings Section -->
+        <div class="savings">
+            <label for="savings">Savings:</label>
+            <input type="number" id="savings" value="0">
+        </div>
+
+        <!-- Remaining Balance Section -->
+        <div class="remaining-balance">
+            <strong>Remaining Balance: </strong>
+            <span id="remaining-amount">0</span> Rs
+        </div>
+
+        <!-- Table for Dates -->
+        <table id="expense-table"></table>
+    </div>
+
+    <!-- Popup for Adding Expense -->
+    <div id="expense-popup" class="popup">
+        <div class="popup-content">
+            <span class="close-btn" onclick="closePopup()">&times;</span>
+            <h3>Add Expense</h3>
+            <label for="expense-amount">Amount:</label>
+            <input type="number" id="expense-amount" placeholder="Enter amount">
+            <label for="expense-item">Expense Item:</label>
+            <input type="text" id="expense-item" placeholder="Enter item name">
+            <button onclick="saveExpense()">Save Expense</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
