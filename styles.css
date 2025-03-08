@@ -1,0 +1,129 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    margin-top: 10px;
+}
+
+input[type="number"], input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.monthly-expenses, .emergency-funds, .savings, .remaining-balance {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+td, th {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+td button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+td button:hover {
+    background-color: #45a049;
+}
+
+.eye-icon {
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.expense-list {
+    display: none;
+    padding: 10px;
+    background-color: #f9f9f9;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.expense-item {
+    display: flex;
+    justify-content: space-between;
+    margin: 5px 0;
+}
+
+.expense-item button {
+    margin-left: 5px;
+}
+
+.collapse-button {
+    background-color: red;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+/* Popup styling */
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    width: 300px;
+    text-align: center;
+}
+
+.popup-content input[type="number"], .popup-content input[type="text"] {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.close-btn {
+    font-size: 1.5em;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
