@@ -13,7 +13,7 @@ function formatDate(date) {
 // Display dates based on selected month
 function displayDates() {
     const month = document.getElementById('month-selector').value;
-    currentMonth = parseInt(month);
+    currentMonth = parseInt(month); // Use the value selected by the user or default to current month
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     const table = document.getElementById('expense-table');
     table.innerHTML = '';  // Clear the table before displaying new month
@@ -192,8 +192,9 @@ displayDates();
 
 // Load saved data from localStorage when page loads
 window.onload = function () {
-    // Select the current month in the dropdown
-    document.getElementById('month-selector').value = currentMonth;
+    // Ensure the current month is selected in the dropdown (instead of defaulting to January)
+    const savedMonth = document.getElementById('month-selector').value || currentMonth;
+    document.getElementById('month-selector').value = savedMonth; // Keep selected month after page refresh
     displayDates();  // Call to display the dates of the selected month
 };
 
