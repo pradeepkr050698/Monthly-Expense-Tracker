@@ -13,7 +13,7 @@ function formatDate(date) {
 // Display dates based on selected month
 function displayDates() {
     const month = document.getElementById('month-selector').value;
-    currentMonth = parseInt(month);  // Update currentMonth based on selected month
+    currentMonth = parseInt(month);
     const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
     const table = document.getElementById('expense-table');
     table.innerHTML = '';  // Clear the table before displaying new month
@@ -32,22 +32,20 @@ function displayDates() {
         `;
     }
 
-    // Load data for the selected month
-    loadMonthData();
-}
+    loadMonthData();  // Load data for the selected month
 
-// Update the month selector to reflect the current month
-function updateMonthSelector() {
-    const monthSelector = document.getElementById('month-selector');
-    const currentMonthIndex = new Date().getMonth();  // Get the current month index (0-11)
-    monthSelector.value = currentMonthIndex;  // Set the value of the month selector
+    // Scroll to the current date if it's within the selected month
+    const today = new Date();
+    if (today.getMonth() === currentMonth) {
+        const currentDateRow = document.querySelector(`#expense-table tr:nth-child(${today.getDate()})`);
+        if (currentDateRow) {
+            currentDateRow.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center',
+            });
+        }
+    }
 }
-
-// Call the updateMonthSelector when the page loads to auto-select the current month
-window.onload = function() {
-    updateMonthSelector();  // Ensure the current month is selected in the dropdown
-    displayDates();  // Display dates for the selected month
-};
 
 // Show expenses for a specific date
 function showExpenses(date) {
@@ -189,15 +187,28 @@ function saveToLocalStorage() {
     localStorage.setItem('expenses', JSON.stringify(expenses));
 }
 
+// Initial call to display dates for the default month
+displayDates();
+
+// Load saved data from localStorage when page loads
+window.onload = function () {
+    // Select the current month in the dropdown
+    document.getElementById('month-selector').value = currentMonth;
+    displayDates();  // Call to display the dates of the selected month
+};
+
+// Save month data when user changes month or when expenses are updated
+window.onbeforeunload = saveMonthData;
+
 // Load data for the selected month
 function loadMonthData() {
     const monthData = expenses[currentMonth] || { monthlyExpenses: 0, emergencyFunds: 0, savings: 0, dailyExpenses: {} };
-
+    
     // Load Monthly Expenses, Emergency Funds, and Savings
     document.getElementById('monthly-expenses').value = monthData.monthlyExpenses;
     document.getElementById('emergency-funds').value = monthData.emergencyFunds;
     document.getElementById('savings').value = monthData.savings;
-
+    
     // Load daily expenses for this month
     for (let date in monthData.dailyExpenses) {
         updateExpenseList(date);
